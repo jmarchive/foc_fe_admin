@@ -2,7 +2,7 @@
 import mainStyles from "../css/main.module.css";
 import { Button, ConfigProvider, Menu, Modal } from "antd";
 import { ItemType, MenuItemType } from "antd/es/menu/interface";
-import { BarChartOutlined, FlagOutlined, IdcardOutlined, SettingOutlined, SnippetsOutlined } from "@ant-design/icons";
+import { BarChartOutlined, FlagOutlined, GiftOutlined, IdcardOutlined, SettingOutlined, SnippetsOutlined, ToolOutlined } from "@ant-design/icons";
 import meta from "../meta";
 import { MenuInfo } from "rc-menu/lib/interface";
 import UserManage from "../tabs/UserManage";
@@ -11,6 +11,8 @@ import EventManage from "../tabs/EventManage";
 import Statistics from "../tabs/Statistics";
 import Settings from "../tabs/Settings";
 import { NoticeType } from "antd/es/message/interface";
+import Lottery from "../tabs/Lottery";
+import Utils from "../tabs/Utils";
 
 type Props = {
     ATFailCallBack :(message?: string)=>void;
@@ -35,6 +37,16 @@ export default class Panel extends Cp<Props, State>{
             key: "orders",
             label: "工单管理",
             icon: <SnippetsOutlined />
+        },
+        {
+            key: "lottery",
+            label: "抽奖",
+            icon: <GiftOutlined />
+        },
+        {
+            key: "utils",
+            label: "实用工具",
+            icon: <ToolOutlined />
         },
         {
             key: "events",
@@ -116,6 +128,8 @@ export default class Panel extends Cp<Props, State>{
                 </div>
                 {this.state.currentKey === "users" ? <UserManage sendMessage={this.props.sendMessage} ATFailCallBack={this.props.ATFailCallBack} /> : null}
                 {this.state.currentKey === "orders" ? <OrderManage ATFailCallBack={this.props.ATFailCallBack} /> : null}
+                {this.state.currentKey === "lottery" ? <Lottery ATFailCallBack={this.props.ATFailCallBack} /> : null}
+                {this.state.currentKey === "utils" ? <Utils ATFailCallBack={this.props.ATFailCallBack} /> : null}
                 {this.state.currentKey === "events" ? <EventManage ATFailCallBack={this.props.ATFailCallBack} /> : null}
                 {this.state.currentKey === "stats" ? <Statistics ATFailCallBack={this.props.ATFailCallBack} /> : null}
                 {this.state.currentKey === "settings" ? <Settings fromLucky={false} ATFailCallBack={this.props.ATFailCallBack} /> : null}
